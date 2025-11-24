@@ -1,0 +1,414 @@
+/* style.css
+   Estilos gerais do site escolar/portfólio
+   - Layout responsivo
+   - Menu fixo no topo
+   - Cards de navegação
+*/
+
+:root {
+    --bg-color: #000000; /* cor do fundo*/
+    --card-bg: #000000;  /* cor do fundo card*/
+    --card-border: #e0e0e0;  /* cor do txt card*/
+    --text-dark: #ffffff;
+    --text-light: #ffffff;  /* cor do txt  cabeçalho*/
+    --text-muted: #ffffff;
+    --accent: #ff0000a2;   /* cor da linha e titulo grande */
+    --accent-hover: #0056b3;
+    --header-bg: #ff000080; /* cor do cabeçalho */
+    --radius-lg: 20px;
+    --radius-sm: 10px;
+    --shadow-card: 0 8px 16px rgba(0,0,0,0.15);
+    --font: 'Arial', sans-serif;
+  }
+  
+  /* Zera margens padrão */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* ----- BASE DO SITE ----- */
+  body {
+    font-family: var(--font);
+    background: var(--bg-color);
+    min-height: 100vh;
+    color: var(--text-dark);
+    display: flex;
+    flex-direction: column;
+    padding-top: 200px; /* espaço pro menu fixo maior */
+  }
+  
+  /* Limita largura do conteúdo e aplica respiro nas laterais */
+  .container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 24px auto;
+    padding: 0 16px 64px;
+  }
+  
+  /* ----- CABEÇALHO / MENU SUPERIOR ----- */
+  header.site-header {
+    background: var(--header-bg);
+    color: var(--text-light);
+    border-bottom: 2px solid var(--accent);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px 16px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+    justify-content: space-between;
+  }
+
+  .site-logo {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--text-light);
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  /* Navegação principal */
+  .nav-menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .nav-menu a {
+    text-decoration: none;
+    color: var(--text-light);
+    font-size: 1rem;
+    font-weight: 600;
+    background: transparent;
+    padding: 12px 20px;
+    border-radius: var(--radius-sm);
+    border: 2px solid transparent;
+    text-align: center;
+    display: block;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .nav-menu a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+
+  .nav-menu a:hover {
+    background: var(--accent);
+    color: var(--text-light);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  }
+
+  .nav-menu a:hover::before {
+    width: 100%;
+  }
+  
+  /* ----- TÍTULOS DE SEÇÃO ----- */
+  .page-title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--text-dark);
+    margin-bottom: 16px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background: linear-gradient(45deg, var(--accent), var(--text-dark));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeInUp 1s ease-out;
+  }
+
+  .page-desc {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    text-align: center;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeInUp 1.2s ease-out;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* ----- GRID DE CARDS / BOTÕES GRANDES ----- */
+  .grid-cards {
+    /* layout de cartões para navegação entre áreas / disciplinas */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  .card-link {
+    background: linear-gradient(145deg, var(--card-bg) 0%, #f9f9f9 100%);
+    border-radius: var(--radius-lg);
+    border: none;
+    box-shadow: var(--shadow-card);
+    padding: 30px 25px 25px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s ease;
+    text-decoration: none;
+    color: var(--text-dark);
+    width: 280px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0,123,255,0.1), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .card-link:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  }
+
+  .card-link:hover::before {
+    left: 100%;
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .card-desc {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+  }
+  
+  /* Botões internos de disciplina dentro das áreas */
+  .btn-area {
+    background: var(--accent);
+    border: 0;
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #111827;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    box-shadow: 0 14px 30px rgba(0,0,0,0.4);
+    margin: 6px 6px 6px 0;
+    cursor: pointer;
+  }
+  .btn-area:hover {
+    background: var(--accent-hover);
+  }
+  
+  /*  BLOCOS DE CONTEÚDO (para páginas de disciplina)  */
+  .content-block {
+    
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    padding: 24px;
+    margin-bottom: 24px;
+    text-align: left;
+    font-family: sans-serif
+  }
+  
+  .content-block h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+  }
+  .content-block p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+  /*  Alinhamneto imagens  */
+   img {
+  width: 420px;
+  height: 315px;
+  border-radius: 15px;
+  position: relative;}
+  
+  .voltar-area:hover {
+    background: var(--accent);
+    color: #111827;
+    border-color: var(--accent);
+  }
+  
+  /* ----- RODAPÉ ----- */
+  footer.site-footer {
+    background: linear-gradient(135deg, var(--header-bg) 0%, #222222 100%);
+    text-align: center;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-top: auto;
+    padding: 40px 16px 50px;
+    border-top: 2px solid var(--accent);
+    position: relative;
+  }
+
+  footer.site-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent), transparent, var(--accent));
+  }
+
+/* ----- ESTILOS PARA A PÁGINA DE CURRÍCULO DETALHADO (curriculo2.html) ----- */
+/* Estes estilos foram movidos do <style> inline da página modelo_curriculo_IoT 1.html para manter consistência com o design do site */
+  .wrap{max-width:900px;
+   margin:24px auto;
+   background:#ffffff;
+   color:#000000;
+   box-shadow:0 2px 10px rgba(0,0,0,.08);}
+  .topbar{background:#fdeea6;
+  padding:28px 28px 18px 28px; 
+  display:flex;
+  gap:20px;
+  align-items:center;
+  justify-content:space-between;}
+  .topbar .info{flex:1;}
+  .topbar h1{margin:0; font-size:34px;}
+  .subtitle{margin-top:4px; color:#444;}
+  .contact{margin-top:10px; font-size:14px; color:#000000;}
+  .avatar{width:120px; height:120px; border-radius:8px; object-fit:cover; border:3px solid #fff; box-shadow:0 0 0 2px #d9d9d9;}
+  .section{margin:0 28px 22px 28px;}
+  .section-title{background:#e6e8ee; padding:10px 12px; font-weight:bold; letter-spacing:.5px;}
+  .cols{display:grid; grid-template-columns:180px 1fr; gap:16px; margin-top:10px;}
+  .line{height:1px; background:#ddd; margin:14px 0;}
+  .item{margin-bottom:12px;}
+  .item h4{margin:0 0 2px 0;}
+  .item small{color:#000000;}
+  .bullets{margin:6px 0 0 18px;}
+  .tag{display:inline-block; background:#f0f0f0; padding:3px 8px; margin:3px 6px 0 0; border-radius:12px; font-size:12px;}
+  .curriculo-footer{padding:18px 28px 28px;}
+
+  /* Estilos para Modal do formulário de contato */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 150;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+  }
+
+  .modal-content {
+    background-color: var(--bg-color);
+    margin: 8% auto;
+    padding: 20px 30px 30px 30px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    width: 90%;
+    max-width: 450px;
+    color: var(--text-light);
+    position: relative;
+  }
+
+  .close-button {
+    color: var(--accent);
+    font-size: 30px;
+    font-weight: bold;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+
+  .close-button:hover {
+    color: var(--accent-hover);
+  }
+
+  #contactForm label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+
+  #contactForm input[type="text"],
+  #contactForm input[type="email"],
+  #contactForm textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    border: 2px solid var(--accent);
+    background-color: var(--card-bg);
+    color: var(--text-light);
+    font-size: 1rem;
+    resize: vertical;
+  }
+
+  #contactForm input[type="text"]:focus,
+  #contactForm input[type="email"]:focus,
+  #contactForm textarea:focus {
+    outline: none;
+    border-color: var(--accent-hover);
+    box-shadow: 0 0 8px var(--accent-hover);
+  }
+
+  #contactForm button.btn-area {
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+ 

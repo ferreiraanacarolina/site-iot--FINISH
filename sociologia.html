@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ciências Humanas » Sociologia</title>
+  <link rel="stylesheet" href="style_modelo1.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="site-logo">Meu Portal de Estudos</div>
+    <button id="openFormBtn" class="btn-area" type="button">Contato</button>
+    <button id="openVoteBtn" class="btn-area" type="button">Votação</button>
+    <nav class="nav-menu">
+      <a href="index_modelo1.html">Início</a>
+      <a href="humanas.html">Voltar: Ciências Humanas</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Modal do formulário de contato -->
+<div id="contactModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <span class="close-button" id="closeFormBtn">&times;</span>
+    <h2>Contato</h2>
+    <form id="contactForm" action="javascript:void(0);">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" required />
+
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="mensagem">Mensagem:</label>
+      <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+
+      <button class="btn-area" type="submit">Enviar</button>
+    </form>
+    <p id="formMessage" style="display:none; color: var(--accent); margin-top: 10px;">Mensagem enviada com sucesso!</p>
+  </div>
+</div>
+
+<main class="container">
+  <h1 class="page-title">Sociologia</h1>
+ 
+  <section class="content-block">
+    <h2>Contrução da sociedade</h2>
+    <p>
+    Buscar pelo entendimento da atual construção social e seus padrões.  
+    </p>
+     <img src="imagens/sociedade.jfif" alt="sociedade">
+  </section>
+
+  <section class="content-block">
+    <h2>Principais sociólogos </h2>
+    <p>
+     Auguste Comte, Émile Durkheim, Karl Marx e Max Weber, considerados os fundadores da disciplina.
+      </p>
+     <img src="imagens/sociologos.jfif" alt="sociedade">
+  </section>
+
+ <section class="content-block">
+    <h2>Conheça este trabalho desenvolvido por mim!!!</h2>
+    <p> ESSES SÃO ALGUNS TRABALHOS QUE DESENVOLVI NO ULTIMO ANO</p>
+    <a class="btn-area" href="Realidades que se Cruzam.pdf">VER TRBALHO SOBRE ANALISE DE PAISES</a>
+      <a class="btn-area" href="https://youtu.be/Ji0Tn4nW9GA?si=uKwzUtymBJD8eA6Q">VER DOCUMENTÁRIO </a>
+  </section>
+</main>
+
+<!-- RODAPÉ -->
+<footer class="site-footer">
+© 2025 · Todos os direitos reservados Ana Carolina Ferreira
+</footer>
+
+<script>
+  // Voting modal functionality
+  const openVoteBtn = document.getElementById('openVoteBtn');
+  const votingModal = document.createElement('div');
+  votingModal.innerHTML = `
+  <div id="votingModal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <span class="close-button" id="closeVoteBtn">&times;</span>
+      <h2>Votação das Matérias</h2>
+      <form id="voteForm">
+        <p>Selecione a matéria para votar:</p>
+        <div>
+          <input type="radio" id="vote-algebra" name="vote-subject" value="algebra.html" />
+          <label for="vote-algebra">Álgebra</label>
+        </div>
+        <div>
+          <input type="radio" id="vote-artes" name="vote-subject" value="artes.html" />
+          <label for="vote-artes">Artes</label>
+        </div>
+        <div>
+          <input type="radio" id="vote-biologia" name="vote-subject" value="biologia.html" />
+          <label for="vote-biologia">Biologia</label>
+        </div>
+        <div>
+          <input type="radio" id="vote-edfisica" name="vote-subject" value="edfisica.html" />
+          <label for="vote-edfisica">Educação Física</label>
+        </div>
+        <div>
+          <input type="radio" id="vote-estatistica" name="vote-subject" value="estatistica.html" />
+          <label for="vote-estatistica">Estatística</label>
+        </div>
+        <div>
+          <input type="radio" id="vote-filosofia" name="vote-subject" value="filosofia.html" />
+          <label for="vote-filosofia">Filosofia</label>
+        </div>
+        <div>
+          <input type="radio" id="vote-fisica" name="vote-subject" value="fisica.html" />
+          <label for="vote-fisica">Física</label>
+        </div>
+        <div>
+          <input type="radio" id="vote-geografia" name="vote-subject" value="geografia.html" />
+          <label for="vote-geografia">Geografia</label>
+        </div>
+        <div>
+          <input type="radio" id="vote-geometria" name="vote-subject" value="geometria.html" />
+          <label for="vote-geometria">Geometria</label>
+        </div>
+        <div>
+          <input type="radio" id="vote-historia" name="vote-subject" value="historia.html" />
+          <label for="vote-historia">História</label>
+        </div>
+        <div>
+          <input type="radio" id="vote-ingles" name="vote-subject" value="ingles.html" />
+          <label for="vote-ingles">Inglês</label>
+        </div>
+        <div>
+          <input type="radio" id="vote-portugues" name="vote-subject" value="portugues.html" />
+          <label for="vote-portugues">Português</label>
+        </div>
+        <div>
+          <input type="radio" id="vote-quimica" name="vote-subject" value="quimica.html" />
+          <label for="vote-quimica">Química</label>
+        </div>
+        <div>
+          <input type="radio" id="vote-sociologia" name="vote-subject" value="sociologia.html" />
+          <label for="vote-sociologia">Sociologia</label>
+        </div>
+        <div style="margin-top: 10px;">
+          <button class="btn-area" type="submit">Votar</button>
+        </div>
+      </form>
+    </div>
+  </div>`;
+  document.body.appendChild(votingModal);
+
+  const votingModalElement = document.getElementById('votingModal');
+  const closeVoteBtn = document.getElementById('closeVoteBtn');
+  const voteForm = document.getElementById('voteForm');
+
+  openVoteBtn.addEventListener('click', () => {
+    votingModalElement.style.display = 'block';
+  });
+
+  closeVoteBtn.addEventListener('click', () => {
+    votingModalElement.style.display = 'none';
+  });
+
+  window.addEventListener('click', (event) => {
+    if (event.target === votingModalElement) {
+      votingModalElement.style.display = 'none';
+    }
+  });
+
+  voteForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const selectedSubject = voteForm.elements['vote-subject'].value;
+    if (!selectedSubject) {
+      alert('Por favor, selecione uma matéria para votar.');
+      return;
+    }
+    let votes = JSON.parse(localStorage.getItem('votes')) || {};
+    votes[selectedSubject] = (votes[selectedSubject] || 0) + 1;
+    localStorage.setItem('votes', JSON.stringify(votes));
+    alert('Obrigado pelo seu voto!');
+    votingModalElement.style.display = 'none';
+    window.location.href = 'vote-ranking.html';
+  });
+
+  // Contact modal variables and listeners
+  const openFormBtn = document.getElementById('openFormBtn');
+  const contactModal = document.getElementById('contactModal');
+  const closeFormBtn = document.getElementById('closeFormBtn');
+  const contactForm = document.getElementById('contactForm');
+  const formMessage = document.getElementById('formMessage');
+
+  openFormBtn.addEventListener('click', () => {
+    contactModal.style.display = 'block';
+    formMessage.style.display = 'none';
+    contactForm.style.display = 'block';
+    contactForm.reset();
+  });
+
+  closeFormBtn.addEventListener('click', () => {
+    contactModal.style.display = 'none';
+  });
+
+  window.addEventListener('click', (event) => {
+    if (event.target === contactModal) {
+      contactModal.style.display = 'none';
+    }
+  });
+
+  contactForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    // Process form submission here. For now, just show success message
+    contactForm.style.display = 'none';
+    formMessage.style.display = 'block';
+  });
+</script>

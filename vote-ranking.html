@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ranking de Votos</title>
+  <link rel="stylesheet" href="style_modelo1.css" />
+  <style>
+  body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #000000;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+    main.container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+      background: #111111;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(255,255,255,0.1);
+    }
+    h1.page-title {
+      text-align: center;
+      color: var(--accent, #ff0000);
+      margin-bottom: 30px;
+      font-weight: 700;
+      font-size: 2rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 12px;
+    }
+    th, td {
+      text-align: left;
+      padding: 12px 15px;
+    }
+    thead th {
+      color: #bbb;
+      font-weight: 600;
+      border-bottom: 2px solid #ff1e1e;
+    }
+    tbody tr {
+      background-color: #222222;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(250, 8, 8, 0.4);
+      transition: transform 0.2s ease;
+      cursor: pointer;
+    }
+    tbody tr:hover {
+      background-color: #fa0c0c;
+      color: white;
+      transform: translateY(-2px);
+    }
+    tbody td a {
+      color: inherit;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    tbody td a:hover {
+      text-decoration: underline;
+    }
+    footer.site-footer {
+      text-align: center;
+      padding: 20px 0;
+      background-color: #ff1e1e;
+      color: white;
+      font-size: 0.9rem;
+      margin-top: 40px;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <div class="site-logo">Meu Portal de Estudos</div>
+    <button id="openFormBtn" class="btn-area" type="button">Contato</button>
+    <nav class="nav-menu">
+      <a href="index_modelo1.html">Início</a>
+      <a href="vote-ranking.html">Ranking de Votos</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Modal do formulário de contato -->
+<div id="contactModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <span class="close-button" id="closeFormBtn">&times;</span>
+    <h2>Contato</h2>
+    <form id="contactForm" action="javascript:void(0);">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" required />
+
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="mensagem">Mensagem:</label>
+      <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+
+      <button class="btn-area" type="submit">Enviar</button>
+    </form>
+    <p id="formMessage" style="display:none; color: var(--accent); margin-top: 10px;">Mensagem enviada com sucesso!</p>
+  </div>
+</div>
+
+<main class="container">
+  <h1 class="page-title">Ranking de Matérias</h1>
+  <table id="rankingTable">
+    <thead>
+      <tr>
+        <th>Posição</th>
+        <th>Matéria</th>
+        <th>Votos</th>
+      </tr>
+    </thead>
+    <tbody>
+   
+    </tbody>
+  </table>
+</main>
+
+<script>
+  const pages = {
+    "algebra.html": "Álgebra",
+    "artes.html": "Artes",
+    "biologia.html": "Biologia",
+    "edfisica.html": "Educação Física",
+    "estatistica.html": "Estatística",
+    "filosofia.html": "Filosofia",
+    "fisica.html": "Física",
+    "geografia.html": "Geografia",
+    "geometria.html": "Geometria",
+    "historia.html": "História",
+    "ingles.html": "Inglês",
+    "portugues.html": "Português",
+    "quimica.html": "Química",
+    "sociologia.html": "Sociologia"
+  };
+
+  // Contact modal variables and listeners
+  const openFormBtn = document.getElementById('openFormBtn');
+  const contactModal = document.getElementById('contactModal');
+  const closeFormBtn = document.getElementById('closeFormBtn');
+  const contactForm = document.getElementById('contactForm');
+  const formMessage = document.getElementById('formMessage');
+
+  openFormBtn.addEventListener('click', () => {
+    contactModal.style.display = 'block';
+    formMessage.style.display = 'none';
+    contactForm.style.display = 'block';
+    contactForm.reset();
+  });
+
+  closeFormBtn.addEventListener('click', () => {
+    contactModal.style.display = 'none';
+  });
+
+  window.addEventListener('click', (event) => {
+    if (event.target === contactModal) {
+      contactModal.style.display = 'none';
+    }
+  });
+
+  contactForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    contactForm.style.display = 'none';
+    formMessage.style.display = 'block';
+  });
+
+  let votes = JSON.parse(localStorage.getItem('votes')) || {};
+  for (const key in pages) {
+    if (!votes[key]) votes[key] = 0;
+  }
+
+  const sortedPages = Object.entries(votes).sort((a, b) => b[1] - a[1]);
+
+  const tbody = document.querySelector('#rankingTable tbody');
+  tbody.innerHTML = '';
+  sortedPages.forEach(([page, count], index) => {
+    const tr = document.createElement('tr');
+    tr.tabIndex = 0;
+    tr.onclick = () => {
+      window.location.href = page;
+    };
+
+    const posTd = document.createElement('td');
+    posTd.textContent = index + 1;
+    const nameTd = document.createElement('td');
+    const link = document.createElement('a');
+    link.href = page;
+    link.textContent = pages[page] || page;
+    link.tabIndex = -1;
+    nameTd.appendChild(link);
+    const voteTd = document.createElement('td');
+    voteTd.textContent = count;
+
+    tr.appendChild(posTd);
+    tr.appendChild(nameTd);
+    tr.appendChild(voteTd);
+
+    tbody.appendChild(tr);
+  });
+</script>
+
+
+
+ 
+</script>
+
+<footer class="site-footer">
+© 2025 · Todos os direitos reservados Ana Carolina Ferreira
+</footer>
+
+</body>
+</html>
